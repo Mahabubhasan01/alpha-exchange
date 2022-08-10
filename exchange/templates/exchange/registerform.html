@@ -1,0 +1,29 @@
+{% extends 'exchange/base.html' %}{% load tailwind_tags %} {% load static %} 
+{% tailwind_css %} {% load static %}{% block css %}
+<link rel="stylesheet" href="{% static 'css/registerform.css' %}" />
+{% endblock css %} {% block content %}
+
+<main class="main">
+  <h1>Register account</h1>
+  <div class="container">
+    <section class="wrapper">
+      <form class="form" onsubmit="return validateForm(this)">
+        <div class="form-group">
+          {% for fm in form %} {{fm.label_tag}} {{fm}} {% endfor %}
+
+          <span class="input-check">
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+          </span>
+          <small class="input-alert"></small>
+        </div>
+
+        <div class="form-group">
+          <input type="submit" class="input-submit" value="Send Request" />
+        </div>
+      </form>
+    </section>
+  </div>
+</main>
+
+{% endblock content %}
