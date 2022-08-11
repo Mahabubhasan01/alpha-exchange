@@ -16,3 +16,10 @@ class Register_User(UserCreationForm):
                   'last_name': 'Last Name', 'email': 'Email', }
         widgets = {'username': forms.TextInput(attrs={'class': 'input-field  ', 'placeholder': 'username'}),
                    'email': forms.EmailInput(attrs={'class': 'input-field', 'placeholder': 'type valid email'}), }
+
+
+class Login_Form(AuthenticationForm):
+    username = UsernameField(widget=forms.TextInput(
+        attrs={'class': 'w-full text-base px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-purple-400', 'placeholder': 'username'}))
+    password = forms.CharField(label='Password', strip=False, widget=forms.PasswordInput(
+        attrs={'class': 'w-full content-center text-base px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-purple-400', 'autocomplete': 'off'}))
