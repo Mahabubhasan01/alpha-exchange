@@ -1,0 +1,35 @@
+{% extends 'exchange/base.html' %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{%static 'css/dashboard.css'%}" />
+{% endblock css %} {% block content %} 
+{% include 'exchange/dashboardnav.html' %}
+
+<main role="main">
+  
+    <section class="panel important">
+      <h2>Write Some News</h2>
+      <ul>
+        <li>Information Panel</li>
+      </ul>
+    </section>
+    
+    <section class="panel important">
+      <h2>Write a post</h2>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+          <div class="twothirds">
+            Blog title:<br/>
+            <input type="text" name="title" size="40"/><br/><br/>
+            Content:<br/>    
+            <textarea name="newstext" rows="15" cols="67"></textarea><br/>  
+          </div>
+          <div>
+            <input type="submit" name="submit" value="Save" />
+          </div>
+          </div>
+        </form>
+    </section>
+    <div class="bg-white rounded shadow border p-6 w-64">
+      <h5 class="text-3xl font-bold mb-4 mt-0">My Title</h5>
+      <p class="text-gray-700 text-sm">Content goes here</p>
+    </div>
+  </main>
+{% endblock content %}

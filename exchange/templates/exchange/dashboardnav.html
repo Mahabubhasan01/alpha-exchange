@@ -5,19 +5,19 @@
   <h1 class='text-3xl font-bold'>Admin Panel</h1>
   <ul class="utilities">
     <br />
-    <li class="users"><a href="#">My Account</a></li>
-    <li class="logout warn"><a href="">Log Out</a></li>
+    <li class="users"><a href="{% url 'user_profile' %}">My Account</a></li>
+    <li class="logout warn"><a href="{% url 'logout' %}">Log Out</a></li>
   </ul>
 </header>
 
 <nav role="navigation">
   <ul class="main">
-    <li class="dashboard"><a href="admindashboard">Dashboard</a></li>
-    <li class="edit"><a href="#">Profile</a></li>
+    <li class="dashboard"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+    <li class="edit"><a href="{% url 'user_profile' %}">Profile</a></li>
     <li class="write"><a href="#">Exchange</a></li>
     <li class="comments"><a href="#">Manage Orders</a></li>
-    <li class="users"><a href="#">Manage Users</a></li>
-    <li class="write"><a href="#">Write blogs</a></li>
+    <li class="users"><a href="{% url 'manage_users' %}">Manage Users</a></li>
+    <li class="write"><a href="{% url 'add_blogs' %}">Write blogs</a></li>
     <li class="comments"><a href="#">Ads</a></li>
     <li class="users"><a href="#">Settings</a></li>
   </ul>

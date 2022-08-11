@@ -1,0 +1,14 @@
+{% extends 'exchange/base.html' %}{% load static %} 
+{% block content %} 
+{% include 'exchange/dashboardnav.html' %}
+
+<main role="main">
+  <section class="panel important flex justify-between">
+   
+   {% for u in users %}
+   {{u.username}}
+   {% endfor %}
+
+  </section>
+</main>
+{% endblock content %}

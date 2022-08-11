@@ -1,7 +1,10 @@
+import email
 from django.shortcuts import render
 from .forms import Register_User, Login_Form
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 
 def Home(request):
@@ -31,3 +34,24 @@ def Register_Form(request):
 
 def Dashboard(request):
     return render(request, 'exchange/dashboard.html')
+
+
+def Add_blogs(request):
+    return render(request, 'exchange/addblogs.html')
+
+
+def User_Profile(request):
+    user = request.user
+
+    return render(request, 'exchange/userprofile.html', {'user': user})
+
+
+def Manage_Users(request):
+    User = get_user_model()
+    users = User.objects.all()
+    return render(request, 'exchange/manageuser.html', {'users': users})
+
+
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect('/')
