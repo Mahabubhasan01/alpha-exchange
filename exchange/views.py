@@ -55,3 +55,8 @@ def Manage_Users(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+
+def Transaction_History(request):
+    
+    return render(request, 'exchange/transactionhistory.html')

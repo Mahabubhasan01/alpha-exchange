@@ -7,6 +7,8 @@ urlpatterns = [
     path('add-blogs/', views.Add_blogs, name='add_blogs'),
     path('user-profile/', views.User_Profile, name='user_profile'),
     path('manage-user/', views.Manage_Users, name='manage_users'),
+    path('transaction_history/', views.Transaction_History,
+         name='transaction_history'),
     path('logout/', views.user_logout, name='logout'),
 
 ]

@@ -1,5 +1,5 @@
-{% extends 'exchange/base.html' %}{% load tailwind_tags %} {% load static %} 
-{% tailwind_css %} {% load static %}{% block css %}
+{% extends 'exchange/base.html' %}{% load tailwind_tags %} {% load static %} {%
+tailwind_css %} {% load static %}{% block css %}
 <link rel="stylesheet" href="{% static 'css/registerform.css' %}" />
 {% endblock css %} {% block content %}
 
@@ -7,10 +7,10 @@
   <h1>Register account</h1>
   <div class="container">
     <section class="wrapper">
-      <form class="form" onsubmit="return validateForm(this)">
+      <form class="form" method="POST">
+        {% csrf_token %}
         <div class="form-group">
           {% for fm in form %} {{fm.label_tag}} {{fm}} {% endfor %}
-
           <span class="input-check">
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
