@@ -1,6 +1,8 @@
 {% extends 'exchange/base.html' %} {% load static %} {% block css %}
 <link rel="stylesheet" href="{%static 'css/dashboard.css'%}" />
-{% endblock css %} {% block content %} {% include 'exchange/dashboardnav.html'%}
+{% endblock css %}
+{% block title %}Dashboard{% endblock title %} 
+{% block content %} {% include 'exchange/dashboardnav.html'%}
 
 
 

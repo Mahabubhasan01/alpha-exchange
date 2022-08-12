@@ -1,6 +1,8 @@
 {% extends 'exchange/base.html' %} {% load static %} {% block css %}
 <link rel="stylesheet" href="{%static 'css/dashboard.css'%}" />
-{% endblock css %} {% block content %} 
+{% endblock css %} 
+{% block title %}Write blog post{% endblock title %}
+{% block content %} 
 {% include 'exchange/dashboardnav.html' %}
 
 <main role="main">
@@ -27,9 +29,5 @@
           </div>
         </form>
     </section>
-    <div class="bg-white rounded shadow border p-6 w-64">
-      <h5 class="text-3xl font-bold mb-4 mt-0">My Title</h5>
-      <p class="text-gray-700 text-sm">Content goes here</p>
-    </div>
   </main>
 {% endblock content %}
