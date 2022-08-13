@@ -1,15 +1,15 @@
-import email
 from django.shortcuts import render
 from .forms import Register_User, Login_Form
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
+from django.contrib.auth.forms import PasswordChangeForm
 from api.models import Order
 from .forms import Order_Form
 from django.conf import settings
 from sslcommerz_lib import SSLCOMMERZ
+from django.urls import reverse
 
 # User login form into home page
 
@@ -35,7 +35,8 @@ def Register_Form(request):
         form = Register_User(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/dashboard/')
+            print(form)
+            return HttpResponseRedirect('home')
     else:
         form = Register_User()
     return render(request, 'exchange/registerform.html', {'form': form})
@@ -126,24 +127,34 @@ def change_password(request):
 
 
 def Exchange_Money(request):
+    def amount():
+        orders = Order.objects.filter(email=email)
+        for am in orders:
+            return am.receive_amount
+
+    def number():
+        orders = Order.objects.filter(email=email)
+        for am in orders:
+            return am.contact_number
     email = request.user.email
     orders = Order.objects.filter(email=email)
-    print(orders)
+    name = request.user.first_name, request.user.last_name,
+    print(amount(), number())
     # ssl coomerze
     settings = {'store_id': 'testbox',
-        'store_pass': 'qwerty', 'issandbox': True}
+                'store_pass': 'qwerty', 'issandbox': True}
     sslcommez = SSLCOMMERZ(settings)
     post_body = {}
-    post_body['total_amount'] = 100.26
+    post_body['total_amount'] = amount()
     post_body['currency'] = "BDT"
     post_body['tran_id'] = "12345"
     post_body['success_url'] = "your success url"
     post_body['fail_url'] = "your fail url"
     post_body['cancel_url'] = "your cancel url"
     post_body['emi_option'] = 0
-    post_body['cus_name'] = "test"
+    post_body['cus_name'] = name
     post_body['cus_email'] = email
-    post_body['cus_phone'] = "01700000000"
+    post_body['cus_phone'] = number()
     post_body['cus_add1'] = orders
     post_body['cus_city'] = "Dhaka"
     post_body['cus_country'] = "Bangladesh"
@@ -155,12 +166,11 @@ def Exchange_Money(request):
     post_body['product_profile'] = "general"
 
     response = sslcommez.createSession(post_body)
-    # print(response) 
     if request.method == 'POST':
         form = Order_Form(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(response('GatewayPageURL'))
+            return HttpResponseRedirect((response['GatewayPageURL']))
     else:
         form = Order_Form()
-    return render(request, 'exchange/exchangemoney.html', {'form': form,'ssl':response})
+    return render(request, 'exchange/exchangemoney.html', {'form': form})

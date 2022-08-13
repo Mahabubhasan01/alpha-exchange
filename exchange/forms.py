@@ -14,11 +14,14 @@ class Register_User(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username',  'email']
+        fields = ['username',  'first_name', 'last_name', 'email']
         labels = {'first_name': 'First Name',
                   'last_name': 'Last Name', 'email': 'Email', }
-        widgets = {'username': forms.TextInput(attrs={'class': 'input-field  ', 'placeholder': 'username'}),
-                   'email': forms.EmailInput(attrs={'class': 'input-field', 'placeholder': 'type valid email'}), }
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'input-field  ', 'placeholder': 'username'}),
+            'first_name': forms.TextInput(attrs={'class': 'input-field  ', 'placeholder': 'first name'}),
+            'last_name': forms.TextInput(attrs={'class': 'input-field  ', 'placeholder': 'last name'}),
+            'email': forms.EmailInput(attrs={'class': 'input-field', 'placeholder': 'type   valid email'}), }
 
 
 class Order_Form(forms.ModelForm):
