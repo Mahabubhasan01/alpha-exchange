@@ -20,3 +20,23 @@ class Order(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+
+class Blog(models.Model):
+    title = models.CharField(max_length=100)
+    info = models.TextField()
+    img = models.ImageField()
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return self.title
+
+
+class Review(models.Model):
+    name = models.CharField(max_length=100)
+    info = models.TextField()
+    img = models.ImageField()
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return self.name

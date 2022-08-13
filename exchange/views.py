@@ -148,7 +148,7 @@ def Exchange_Money(request):
     post_body['total_amount'] = amount()
     post_body['currency'] = "BDT"
     post_body['tran_id'] = "12345"
-    post_body['success_url'] = "your success url"
+    post_body['success_url'] = "transaction_history"
     post_body['fail_url'] = "your fail url"
     post_body['cancel_url'] = "your cancel url"
     post_body['emi_option'] = 0
@@ -166,6 +166,7 @@ def Exchange_Money(request):
     post_body['product_profile'] = "general"
 
     response = sslcommez.createSession(post_body)
+    print(response)
     if request.method == 'POST':
         form = Order_Form(request.POST)
         if form.is_valid():

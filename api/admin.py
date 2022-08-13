@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from api.models import Order
+from api.models import Blog, Order, Review
 
 # Register your models here.
 
@@ -15,4 +15,14 @@ class OrderAdmin(admin.ModelAdmin):
                     "receive_amount",
                     "send_number",
                     "receive_number",
-                    "contact_number" ]
+                    "contact_number"]
+
+
+@admin.register(Blog)
+class BlogAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title', 'info', 'img', 'date']
+
+
+@admin.register(Review)
+class BlogAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'info', 'img', 'date']
