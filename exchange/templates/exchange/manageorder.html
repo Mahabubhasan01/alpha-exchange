@@ -7,7 +7,7 @@
 
   {% comment %} Bkash Orders {% endcomment %}
   <section class="panel important flex justify-between">
-    {% if bkash %} {% for bks in bkash %}
+    
     <div class="container">
       <div class="row row--top-40">
         <div class="col-md-12">
@@ -43,6 +43,7 @@
                 </tr>
               </thead>
               <tbody class="table__tbody">
+                {% if bkash %} {% for bks in bkash %}
                 <tr class="table-row table-row--chris">
                   <td class="table-row__td">
                     <input id="" type="checkbox" class="table__select-row" />
@@ -212,26 +213,20 @@
                     </svg>
                   </td>
                 </tr>
+                {% endfor %} {% endif %}
+
               </tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
-    {% endfor %} {% endif %}
-
-
-
-
-
-
-    
   </section>
+
 
 {% comment %} Nagad Orders {% endcomment %}
 
   <section class="panel important flex justify-between">
-    {% if nagad %} {% for bks in nagad %}
     <div class="container">
       <div class="row row--top-40">
         <div class="col-md-12">
@@ -267,6 +262,7 @@
                 </tr>
               </thead>
               <tbody class="table__tbody">
+                {% if nagad %} {% for bks in nagad %}
                 <tr class="table-row table-row--chris">
                   <td class="table-row__td">
                     <input id="" type="checkbox" class="table__select-row" />
@@ -436,21 +432,19 @@
                     </svg>
                   </td>
                 </tr>
+                {% endfor %} {% endif %}
               </tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
-    {% endfor %} {% endif %}
     
   </section>
 
 
-
 {% comment %} Rocekt Orders {% endcomment %}
   <section class="panel important flex justify-between">
-    {% if rocket %} {% for bks in rocket %}
     <div class="container">
       <div class="row row--top-40">
         <div class="col-md-12">
@@ -486,6 +480,7 @@
                 </tr>
               </thead>
               <tbody class="table__tbody">
+                {% if rocket %} {% for bks in rocket %}
                 <tr class="table-row table-row--chris">
                   <td class="table-row__td">
                     <input id="" type="checkbox" class="table__select-row" />
@@ -655,13 +650,13 @@
                     </svg>
                   </td>
                 </tr>
+                {% endfor %} {% endif %}
               </tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
-    {% endfor %} {% endif %}
 
 
 
@@ -673,7 +668,6 @@
 
 {% comment %} Upay orders {% endcomment %}
   <section class="panel important flex justify-between">
-    {% if upay %} {% for bks in upay %}
     <div class="container">
       <div class="row row--top-40">
         <div class="col-md-12">
@@ -709,6 +703,7 @@
                 </tr>
               </thead>
               <tbody class="table__tbody">
+                {% if upay %} {% for bks in upay %}
                 <tr class="table-row table-row--chris">
                   <td class="table-row__td">
                     <input id="" type="checkbox" class="table__select-row" />
@@ -878,25 +873,19 @@
                     </svg>
                   </td>
                 </tr>
+                {% endfor %} {% endif %}
               </tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
-    {% endfor %} {% endif %}
-
-
-
-
-
 
     
   </section>
 
 
   <section class="panel important flex justify-between">
-    {% if vm %} {% for bks in vm %}
     <div class="container">
       <div class="row row--top-40">
         <div class="col-md-12">
@@ -933,6 +922,7 @@
                 </tr>
               </thead>
               <tbody class="table__tbody">
+                {% if vm %} {% for bks in vm %}
                 <tr class="table-row table-row--chris">
                   <td class="table-row__td">
                     <input id="" type="checkbox" class="table__select-row" />
@@ -1111,20 +1101,13 @@
                     </a>
                   </td>
                 </tr>
+                {% endfor %} {% endif %}
               </tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
-    {% endfor %} {% endif %}
-
-
-
-
-
-
-    
   </section>
 </main>
 {% endblock content %}

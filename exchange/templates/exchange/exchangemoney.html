@@ -1,0 +1,25 @@
+{% extends 'exchange/base.html' %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{%static 'css/dashboard.css'%}" />
+<link rel="stylesheet" href="{%static 'css/paymentform.css'%}" />
+{% endblock css %} {% block title %}Money exchange{% endblock title %} 
+{% block content %} {% include 'exchange/dashboardnav.html'%}
+
+
+<main role="main">
+  <section class="panel important flex justify-between">
+    <div class='form'>
+        <form action="" method="POST">
+      {% csrf_token %} {% for fm in form %} {{fm.label_tag}} {{fm}} {% endfor %}
+      <input type="submit" value="Place" />
+    </form>
+    </div>
+  </section>
+
+
+  <section class="panel important flex justify-between">
+    {{ssl}}    
+  </section>
+
+</main>
+
+{% endblock %}

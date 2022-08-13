@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
 from api.models import Order
+from .forms import Order_Form
+from django.conf import settings
+from sslcommerz_lib import SSLCOMMERZ
 
 # User login form into home page
 
@@ -41,7 +44,15 @@ def Register_Form(request):
 # User dashboard
 
 def Dashboard(request):
-    return render(request, 'exchange/dashboard.html')
+    form = Order_Form()
+    if request.method == 'POST':
+        form = Order_Form(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/transaction_history/')
+    else:
+        form = Order_Form()
+    return render(request, 'exchange/dashboard.html', {'form': form})
 
 
 # Write blogs as admin panel
@@ -79,7 +90,7 @@ def Transaction_History(request):
     email = request.user.email
     orders = Order.objects.filter(email=email)
     print(orders)
-    return render(request, 'exchange/transactionhistory.html',{'orders':orders})
+    return render(request, 'exchange/transactionhistory.html', {'orders': orders})
 
 
 # User pending order or paid order
@@ -112,3 +123,44 @@ def change_password(request):
             return render(request, 'exchange/changepassword.html', {'form': fm})
     else:
         HttpResponseRedirect('/dashboard')
+
+
+def Exchange_Money(request):
+    email = request.user.email
+    orders = Order.objects.filter(email=email)
+    print(orders)
+    # ssl coomerze
+    settings = {'store_id': 'testbox',
+        'store_pass': 'qwerty', 'issandbox': True}
+    sslcommez = SSLCOMMERZ(settings)
+    post_body = {}
+    post_body['total_amount'] = 100.26
+    post_body['currency'] = "BDT"
+    post_body['tran_id'] = "12345"
+    post_body['success_url'] = "your success url"
+    post_body['fail_url'] = "your fail url"
+    post_body['cancel_url'] = "your cancel url"
+    post_body['emi_option'] = 0
+    post_body['cus_name'] = "test"
+    post_body['cus_email'] = email
+    post_body['cus_phone'] = "01700000000"
+    post_body['cus_add1'] = orders
+    post_body['cus_city'] = "Dhaka"
+    post_body['cus_country'] = "Bangladesh"
+    post_body['shipping_method'] = "NO"
+    post_body['multi_card_name'] = ""
+    post_body['num_of_item'] = 1
+    post_body['product_name'] = "Test"
+    post_body['product_category'] = "Test Category"
+    post_body['product_profile'] = "general"
+
+    response = sslcommez.createSession(post_body)
+    # print(response) 
+    if request.method == 'POST':
+        form = Order_Form(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(response('GatewayPageURL'))
+    else:
+        form = Order_Form()
+    return render(request, 'exchange/exchangemoney.html', {'form': form,'ssl':response})

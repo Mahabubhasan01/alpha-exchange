@@ -1,6 +1,9 @@
+from dataclasses import fields
+from pyexpat import model
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
 from django import forms
+from api.models import Order
 
 
 class Register_User(UserCreationForm):
@@ -16,6 +19,12 @@ class Register_User(UserCreationForm):
                   'last_name': 'Last Name', 'email': 'Email', }
         widgets = {'username': forms.TextInput(attrs={'class': 'input-field  ', 'placeholder': 'username'}),
                    'email': forms.EmailInput(attrs={'class': 'input-field', 'placeholder': 'type valid email'}), }
+
+
+class Order_Form(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = '__all__'
 
 
 class Login_Form(AuthenticationForm):

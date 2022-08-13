@@ -1,14 +1,13 @@
 {% load static %} {% block css %}
 <link rel="stylesheet" href="{%static 'css/dashboard.css'%}" />
-{% endblock css %} 
-{% block content %}
+{% endblock css %} {% block content %}
 <header role="banner">
   {% if user.is_superuser %}
   <h1 class="text-3xl font-bold">Admin Panel</h1>
   {% else %}
   <h1 class="text-3xl font-bold">User Dashboard</h1>
   {% endif %}
-  
+
   <ul class="utilities">
     <br />
     <li class="users"><a href="{% url 'user_profile' %}">My Account</a></li>
@@ -21,8 +20,9 @@
   <ul class="main">
     <li class="dashboard"><a href="{% url 'dashboard' %}">Dashboard</a></li>
     <li class="edit"><a href="{% url 'user_profile' %}">Profile</a></li>
-    <li class="write"><a href="#">Exchange</a></li>
-    <li class="comments"><a href="{% url 'manage_order' %}">Manage Orders</a></li>
+    <li class="comments">
+      <a href="{% url 'manage_order' %}">Manage Orders</a>
+    </li>
     <li class="users"><a href="{% url 'manage_users' %}">Manage Users</a></li>
     <li class="write"><a href="{% url 'add_blogs' %}">Write blogs</a></li>
     <li class="comments">
@@ -34,8 +34,10 @@
   <ul class="main">
     <li class="dashboard"><a href="{% url 'dashboard' %}">Dashboard</a></li>
     <li class="edit"><a href="{% url 'user_profile' %}">Profile</a></li>
-    <li class="write"><a href="#">Exchange</a></li>
-    <li class="comments"><a href="{% url 'transaction_history' %}">Transaction History</a></li>
+    <li class="write"><a href="{% url 'exchange_money' %}">Exchange</a></li>
+    <li class="comments">
+      <a href="{% url 'transaction_history' %}">Transaction History</a>
+    </li>
   </ul>
   {% endif %}
 </nav>

@@ -11,6 +11,8 @@ urlpatterns = [
          name='manage_order'),
     path('transaction_history/', views.Transaction_History,
          name='transaction_history'),
+    path('exchange-money/', views.Exchange_Money,
+         name='exchange_money'),
     path('change-password/', views.change_password, name='change_password'),
     path('logout/', views.user_logout, name='logout'),
 
