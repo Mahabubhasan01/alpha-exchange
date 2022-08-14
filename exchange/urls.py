@@ -9,6 +9,8 @@ urlpatterns = [
     path('manage-user/', views.Manage_Users, name='manage_users'),
     path('manage-order/', views.Manage_Order,
          name='manage_order'),
+    path('update-order/<int:pk>/', views.update_order,
+         name='update_order'),
     path('transaction_history/', views.Transaction_History,
          name='transaction_history'),
     path('exchange-money/', views.Exchange_Money,

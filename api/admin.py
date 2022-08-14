@@ -15,7 +15,8 @@ class OrderAdmin(admin.ModelAdmin):
                     "receive_amount",
                     "send_number",
                     "receive_number",
-                    "contact_number"]
+                    "contact_number",
+                    'status']
 
 
 @admin.register(Blog)

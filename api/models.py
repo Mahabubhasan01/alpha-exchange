@@ -17,6 +17,7 @@ class Order(models.Model):
     send_number = models.BigIntegerField()
     receive_number = models.BigIntegerField()
     contact_number = models.IntegerField()
+    status = models.CharField(max_length=10, default='pending')
 
     def __str__(self) -> str:
         return self.name

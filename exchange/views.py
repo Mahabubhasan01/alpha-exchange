@@ -1,5 +1,7 @@
 import email
 from django.shortcuts import render
+
+import exchange
 from .forms import Register_User, Login_Form
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
@@ -105,21 +107,27 @@ def user_logout(request):
 def Transaction_History(request):
     email = request.user.email
     orders = Order.objects.filter(email=email)
+    bkash = Order.objects.filter(receive_method='Bkash', status='paid')
+
     print(orders)
-    return render(request, 'exchange/transactionhistory.html', {'orders': orders})
+    return render(request, 'exchange/transactionhistory.html', {'orders': orders, 'bkash': bkash})
 
 
 # User pending order or paid order
+def update_order(request, pk):
+    bk = Order.objects.get(id=pk)
+    bk.status = 'paid'
+    bk.save()
+    return render(request, 'exchange/singledata.html', {'update': bk})
+
 
 def Manage_Order(request):
 
-    bkash = Order.objects.filter(receive_method='Bkash')
+    bkash = Order.objects.filter(receive_method='Bkash', status='pending')
     nagad = Order.objects.filter(receive_method='Nagad')
     rocket = Order.objects.filter(receive_method='Rocket')
     upay = Order.objects.filter(receive_method='Upay')
     vm = Order.objects.filter(receive_method='Visa/Master card')
-    print(nagad)
-    print(bkash)
     return render(request, 'exchange/manageorder.html', {'bkash': bkash, 'nagad': nagad,
                                                          'rocket': rocket, 'upay': upay, 'vm': vm, })
 
@@ -181,7 +189,7 @@ def Exchange_Money(request):
     post_body['product_profile'] = "general"
 
     response = sslcommez.createSession(post_body)
-    print(response)
+    # print(response)
     if request.method == 'POST':
         form = Order_Form(request.POST)
         if form.is_valid():
