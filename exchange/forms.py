@@ -3,7 +3,7 @@ from pyexpat import model
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
 from django import forms
-from api.models import Order
+from api.models import Order, Blog, Review
 
 
 class Register_User(UserCreationForm):
@@ -27,6 +27,18 @@ class Register_User(UserCreationForm):
 class Order_Form(forms.ModelForm):
     class Meta:
         model = Order
+        fields = '__all__'
+
+
+class Blog_Form(forms.ModelForm):
+    class Meta:
+        model = Blog
+        fields = '__all__'
+
+
+class Review_Form(forms.ModelForm):
+    class Meta:
+        model = Review
         fields = '__all__'
 
 

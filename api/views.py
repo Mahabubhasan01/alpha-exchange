@@ -113,7 +113,7 @@ def Blog_list(request):
     """
     if request.method == 'GET':
         blog = Blog.objects.all()
-        serializer = OrderSerializer(blog, many=True)
+        serializer = BlogSerializer(blog, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
@@ -135,11 +135,11 @@ def Blog_detail(request, pk):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = OrderSerializer(blog)
+        serializer = BlogSerializer(blog)
         return Response(serializer.data)
 
     elif request.method == 'PUT':
-        serializer = OrderSerializer(blog, data=request.data)
+        serializer = BlogSerializer(blog, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -159,7 +159,7 @@ def Review_list(request):
     """
     if request.method == 'GET':
         review = Review.objects.all()
-        serializer = OrderSerializer(review, many=True)
+        serializer = ReviewSerializer(review, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':

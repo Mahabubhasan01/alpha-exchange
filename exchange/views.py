@@ -1,3 +1,4 @@
+import email
 from django.shortcuts import render
 from .forms import Register_User, Login_Form
 from django.http import HttpResponse, HttpResponseRedirect
@@ -5,8 +6,8 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import PasswordChangeForm
-from api.models import Order
-from .forms import Order_Form
+from api.models import Order, Blog, Review
+from .forms import Order_Form, Blog_Form, Review_Form
 from django.conf import settings
 from sslcommerz_lib import SSLCOMMERZ
 from django.urls import reverse
@@ -59,7 +60,21 @@ def Dashboard(request):
 # Write blogs as admin panel
 
 def Add_blogs(request):
-    return render(request, 'exchange/addblogs.html')
+    blogs = Blog.objects.all()
+    email = request.user.email
+    reviews = Review.objects.filter(email=email)
+    rform = Review_Form()
+    bform = Blog_Form()
+    if request.method == 'POST':
+        bform = Blog_Form(request.data)
+        if bform.is_valid():
+            bform.save()
+    if request.method == 'POST':
+        rform = Review_Form(request.data)
+        if rform.is_valid():
+            print(rform)
+            rform.save()
+    return render(request, 'exchange/addblogs.html', {'blogs': blogs, 'bform': bform, 'reviews': reviews, 'rform': rform})
 
 # Every user profile
 

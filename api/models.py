@@ -34,6 +34,7 @@ class Blog(models.Model):
 
 class Review(models.Model):
     name = models.CharField(max_length=100)
+    email = models.EmailField(default='Mehjabin@dreamgirl.com')
     info = models.TextField()
     img = models.ImageField()
     date = models.DateTimeField(auto_now_add=True)

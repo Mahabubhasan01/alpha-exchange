@@ -41,7 +41,7 @@
                   <th class="table__th">Receive number</th>
                   <th class="table__th">Contact number</th>
                   <th class="table__th">Status</th>
-                  <th class="table__th">Actions</th>
+                  <th class="table__th"></th>
                 </tr>
               </thead>
               <tbody class="table__tbody">
@@ -100,7 +100,14 @@
                       pending
                     </p>
                   </td>
-                  <td class="table-row__td">
+                  <td data-column="Policy status" class="table-row__td">
+                   <a href="" class='text-lg text-green-500'>
+                    <p class="">
+                      download
+                    </p>
+                   </a>
+                  </td>
+                  {% comment %} <td class="table-row__td">
                     <a href="">
                       <svg
                       version="1.1"
@@ -222,7 +229,7 @@
                       <g></g>
                     </svg>
                     </a>
-                  </td>
+                  </td> {% endcomment %}
                 </tr>
                 {% endfor %} 
 
