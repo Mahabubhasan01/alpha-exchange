@@ -19,6 +19,7 @@ from django.urls import reverse
 
 def Home(request):
     fm = Login_Form(request=request, data=request.POST)
+    blogs = Blog.objects.all()[:3]
     if fm.is_valid():
         username = fm.cleaned_data['username']
         userpassword = fm.cleaned_data['password']
@@ -28,10 +29,21 @@ def Home(request):
             return HttpResponseRedirect('/dashboard/')
     else:
         fm = Login_Form()
-    return render(request, 'exchange/home.html', {'form': fm})
+    return render(request, 'exchange/home.html', {'form': fm, 'blogs': blogs})
 
 
+def All_Blogs(request):
+    blogs = Blog.objects.all()
+    reviews = Review.objects.all()
+
+    return render(request, 'exchange/allblogs.html', {'blogs': blogs, 'reviews': reviews})
+
+
+def Blog_Detail(request, blog_id):
+    blog = Blog.objects.get(id=blog_id)
+    return render(request, 'exchange/blogdetail.html', {'blog': blog})
 # User register form
+
 
 def Register_Form(request):
     if request.method == 'POST':
@@ -124,10 +136,11 @@ def update_order(request, pk):
 def Manage_Order(request):
 
     bkash = Order.objects.filter(receive_method='Bkash', status='pending')
-    nagad = Order.objects.filter(receive_method='Nagad')
-    rocket = Order.objects.filter(receive_method='Rocket')
-    upay = Order.objects.filter(receive_method='Upay')
-    vm = Order.objects.filter(receive_method='Visa/Master card')
+    nagad = Order.objects.filter(receive_method='Nagad', status='pending')
+    rocket = Order.objects.filter(receive_method='Rocket', status='pending')
+    upay = Order.objects.filter(receive_method='Upay', status='pending')
+    vm = Order.objects.filter(
+        receive_method='Visa/Master card', status='pending')
     return render(request, 'exchange/manageorder.html', {'bkash': bkash, 'nagad': nagad,
                                                          'rocket': rocket, 'upay': upay, 'vm': vm, })
 

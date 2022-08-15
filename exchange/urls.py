@@ -5,6 +5,8 @@ urlpatterns = [
     path('register', views.Register_Form, name='register_form'),
     path('dashboard/', views.Dashboard, name='dashboard'),
     path('add-blogs/', views.Add_blogs, name='add_blogs'),
+    path('all-blogs/', views.All_Blogs, name='all_blogs'),
+    path('blog-detail/<int:blog_id>/', views.Blog_Detail, name='blog_detail'),
     path('user-profile/', views.User_Profile, name='user_profile'),
     path('manage-user/', views.Manage_Users, name='manage_users'),
     path('manage-order/', views.Manage_Order,

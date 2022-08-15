@@ -24,6 +24,7 @@ class Order(models.Model):
 
 
 class Blog(models.Model):
+    author = models.CharField(max_length=50, default='Mehjabin chowdhury')
     title = models.CharField(max_length=100)
     info = models.TextField()
     img = models.ImageField()

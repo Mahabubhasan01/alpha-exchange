@@ -1,5 +1,4 @@
-{% extends 'exchange/base.html' %} {% block content %} {% comment %} 
-{% include 'exchange/customnavbar.html' %} {% endcomment %}
+{% extends 'exchange/base.html' %} {% block content %}
 
 <html>
   <head>
@@ -31,211 +30,13 @@
 
   <body>
     <div class="py-2 bg-gray-100 text-gray-900 min-h-screen">
-      <header
-        class="px-5 sm:px-10 md:px-10 md:py-5 lg:px-20 flex items-center justify-between"
-      >
-        <div>
-          <img
-            src="https://storage.googleapis.com/devitary-image-host.appspot.com/15846435184459982716-LogoMakr_7POjrN.png"
-            class="w-48"
-          />
-        </div>
-        <div x-data="{ navOpen: false }">
-          <button @click="navOpen = true">
-            <svg
-              class="cursor-pointer text-gray-700 hover:text-gray-900 w-6 md:hidden"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
-          </button>
-          <div
-            :class="{'hidden': !navOpen}"
-            class="md:block fixed top-0 inset-x-0 bg-white p-8 m-4 z-30 rounded-lg shadow md:rounded-none md:shadow-none md:p-0 md:m-0 md:relative md:bg-transparent"
-          >
-            <button
-              @click="navOpen = false"
-              class="absolute top-0 right-0 mr-5 mt-5 md:hidden"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-x"
-              >
-                <path d="M18 6L6 18M6 6l12 12" />
-              </svg>
-            </button>
-            <div class="flex flex-col items-center justify-center md:block">
-              <a
-                href="#"
-                class="transition-all duration-100 ease-in-out pb-1 border-b-2 text-indigo-500 border-transparent hover:border-indigo-300 hover:text-gray-600 md:mr-8 text-lg md:text-sm font-bold tracking-wide my-4 md:my-0"
-              >
-                Blog
-              </a>
-              <a
-                href="#"
-                class="transition-all duration-100 ease-in-out pb-1 border-b-2 text-indigo-500 border-transparent hover:border-indigo-300 hover:text-indigo-600 md:mr-8 text-lg md:text-sm font-bold tracking-wide my-4 md:my-0"
-              >
-                Login
-              </a>
-              <a href="{% url 'register_form' %}">
-                <button
-                  class="border border-transparent rounded font-semibold tracking-wide text-lg md:text-sm px-5 py-3 md:py-2 focus:outline-none focus:shadow-outline bg-indigo-600 text-gray-100 hover:bg-indigo-800 hover:text-gray-200 transition-all duration-300 ease-in-out my-4 md:my-0 w-full md:w-auto"
-                >
-                  Sign Up
-                </button>
-              </a>
-            </div>
-          </div>
-        </div>
-      </header>
 
       <main>
-        <section>
-          <!-- component -->
-          <div
-            class="min-h-screen sm:flex sm:flex-row justify-evenly bg-gray-900 p-5 sm:p-20 rounded-xl shadow-xl"
-          >
-            <div
-              class="flex-col flex self-center lg:p-10 sm:max-w-5xl xl:max-w-lg z-10"
-            >
-              <div class="self-start hidden lg:flex flex-col text-white">
-                <div class="flex items-center mb-5">
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Eo_circle_purple_letter-a.svg/2048px-Eo_circle_purple_letter-a.svg.png"
-                    class="w-10"
-                  />
-                  <h3 class="text-3xl font-bold ml-2">Alpha</h3>
-                </div>
-                <h1 class="my-3 font-semibold text-5xl">
-                  Welcome back to Alpha Exchange
-                </h1>
-                <p class="pr-3">
-                  Lorem ipsum is placeholder text commonly used in the graphic,
-                  print, and publishing industries for previewing layouts and
-                  visual mockups
-                </p>
-              </div>
-            </div>
-            <div class="flex justify-center self-center z-10">
-              <form action="" method="POST">
-                {% csrf_token %}
-                <div class="p-12 bg-gray-800 mx-auto rounded-3xl w-96">
-                  <div class="mb-4">
-                    <h3 class="font-semibold text-2xl text-gray-100">
-                      Sign In
-                    </h3>
-                    <p class="text-gray-500">
-                      Don'thave an account?
-                      <a
-                        href="{% url 'register_form' %}"
-                        class="text-sm text-purple-700 hover:text-purple-600"
-                        >Sign Up</a
-                      >
-                    </p>
-                  </div>
-                  <div class="space-y-5">
-                    {% for fm in form %}
-                    <div class="space-y-2">
-                      <fieldset>
-                        <legend class="text-white">{{fm.label_tag}}</legend>
-                        {{fm}}
-                      </fieldset>
-                    </div>
-                    {% endfor %}
-                    <div class="flex items-center justify-between">
-                      <div class="text-sm ml-auto">
-                        <a
-                          href="#"
-                          class="text-purple-700 hover:text-purple-600"
-                        >
-                          Forgot your password?
-                        </a>
-                      </div>
-                    </div>
-                    <div>
-                      <button
-                        type="submit"
-                        class="w-full flex justify-center bg-purple-800 hover:bg-purple-700 text-gray-100 p-3 rounded-lg tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500"
-                      >
-                        Sign in
-                      </button>
-                    </div>
-                    <div
-                      class="flex items-center justify-center space-x-2 my-5"
-                    >
-                      <span class="h-px w-16 bg-gray-700"></span>
-                      <span class="text-gray-400 font-normal">or</span>
-                      <span class="h-px w-16 bg-gray-700"></span>
-                    </div>
-                    <div class="flex justify-center gap-4">
-                      <div class="mb-6 md:mb-0">
-                        <button
-                          type="submit"
-                          class="flex items-center justify-center bg-red-500 hover:bg-red-400 text-sm text-gray-500 p-3 rounded-lg tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500"
-                        >
-                          <svg
-                            class="w-4"
-                            fill="#fff"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M11.99 13.9v-3.72h9.36c.14.63.25 1.22.25 2.05 0 5.71-3.83 9.77-9.6 9.77-5.52 0-10-4.48-10-10S6.48 2 12 2c2.7 0 4.96.99 6.69 2.61l-2.84 2.76c-.72-.68-1.98-1.48-3.85-1.48-3.31 0-6.01 2.75-6.01 6.12s2.7 6.12 6.01 6.12c3.83 0 5.24-2.65 5.5-4.22h-5.51v-.01Z"
-                            ></path>
-                          </svg>
-                        </button>
-                      </div>
-                      <div class="mb-6 md:mb-0">
-                        <button
-                          type="submit"
-                          class="flex items-center justify-center bg-blue-600 hover:bg-blue-500 text-sm text-gray-100 p-3 rounded-lg tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500 px-"
-                        >
-                          <svg
-                            class="w-4"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              fill="#fff"
-                              fill-rule="evenodd"
-                              d="M9.945 22v-8.834H7V9.485h2.945V6.54c0-3.043 1.926-4.54 4.64-4.54 1.3 0 2.418.097 2.744.14v3.18h-1.883c-1.476 0-1.82.703-1.82 1.732v2.433h3.68l-.736 3.68h-2.944L13.685 22"
-                            ></path>
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="pt-5 text-center text-gray-400 text-xs">
-                    <span>
-                      Copyright © 2021-2023
-                      <a
-                        href="https://codepen.io/uidesignhub"
-                        rel=""
-                        target="_blank"
-                        title="Ajimon"
-                        class="text-violet-500 hover:text-violet-600"
-                        >AJI</a
-                      ></span
-                    >
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </section>
+       
+        <header>
+          {% include 'exchange/customnavbar.html' %}
+        </header>
+        {% comment %}  {% endcomment %}
 
         <div
           class="px-5 sm:px-10 md:px-20 lg:px-10 xl:px-20 py-8 bg-indigo-100"
@@ -798,34 +599,11 @@
                 <div
                   class="flex flex-col items-center lg:flex-row lg:items-stretch lg:justify-around"
                 >
-                  <a
-                    href="https://owaiskhan.me"
-                    class="flex w-full max-w-sm mt-6 lg:mt-8 xl:mr-8"
-                  >
-                    <div
-                      class="transition-all duration-300 cursor-pointer w-full shadow-lg hover:shadow-xl rounded-lg bg-gray-100 relative"
-                    >
-                      <div
-                        class="w-full h-48 bg-cover rounded-t-lg"
-                        style="
-                          background-image: url('https://images.unsplash.com/3/doctype-hi-res.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80');
-                        "
-                      ></div>
-                      <div class="p-6">
-                        <div class="text-lg font-bold">
-                          Tips for creating an amazing design system
-                        </div>
-                        <div class="mt-2 text-gray-900 text-sm">
-                          Learn how to create a new design system that is
-                          beautiful and efficient for creating your UI
-                          components.
-                        </div>
-                      </div>
-                    </div>
-                  </a>
 
+                  {% if blogs %}
+                  {% for blog in blogs %}
                   <a
-                    href="https://timerse.com"
+                    href="{% url 'blog_detail' blog.id %}"
                     class="flex w-full max-w-sm mt-6 lg:mt-8 xl:mr-8"
                   >
                     <div
@@ -839,16 +617,16 @@
                       ></div>
                       <div class="p-6">
                         <div class="text-lg font-bold">
-                          Using a drawing tablet to create beautiful icons
+                          {{blog.title}}
                         </div>
                         <div class="mt-2 text-gray-900 text-sm">
-                          Good Icons are hard to come by. This article guides
-                          you on how to create beautiful sketched icons using a
-                          drawing pad.
+                          {{blog.info}}
                         </div>
                       </div>
                     </div>
                   </a>
+                  {% endfor %}
+                  {% endif %}
                 </div>
               </div>
 

@@ -25,5 +25,5 @@ class BlogAdmin(admin.ModelAdmin):
 
 
 @admin.register(Review)
-class BlogAdmin(admin.ModelAdmin):
+class ReviewAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'info', 'img', 'date']
