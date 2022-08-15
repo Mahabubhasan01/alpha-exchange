@@ -20,6 +20,7 @@ from django.urls import reverse
 def Home(request):
     fm = Login_Form(request=request, data=request.POST)
     blogs = Blog.objects.all()[:3]
+    reviews = Review.objects.all()[:3]
     if fm.is_valid():
         username = fm.cleaned_data['username']
         userpassword = fm.cleaned_data['password']
@@ -29,7 +30,7 @@ def Home(request):
             return HttpResponseRedirect('/dashboard/')
     else:
         fm = Login_Form()
-    return render(request, 'exchange/home.html', {'form': fm, 'blogs': blogs})
+    return render(request, 'exchange/home.html', {'form': fm, 'blogs': blogs, "reviews": reviews})
 
 
 def All_Blogs(request):
@@ -60,6 +61,9 @@ def Register_Form(request):
 # User dashboard
 
 def Dashboard(request):
+    email = request.user.email
+    orders = Order.objects.filter(email=email, status='pending')
+
     form = Order_Form()
     if request.method == 'POST':
         form = Order_Form(request.POST)
@@ -68,7 +72,7 @@ def Dashboard(request):
             return HttpResponseRedirect('/transaction_history/')
     else:
         form = Order_Form()
-    return render(request, 'exchange/dashboard.html', {'form': form})
+    return render(request, 'exchange/dashboard.html', {'form': form, 'orders': orders})
 
 
 # Write blogs as admin panel

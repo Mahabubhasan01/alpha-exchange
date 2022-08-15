@@ -1,17 +1,20 @@
-{% load tailwind_tags %}
-{% load static %}
+{% load tailwind_tags %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>{% block title %}Home{% endblock title %}</title>
     {% tailwind_css %} {% block css %}{% endblock css %}
   </head>
-  <body>
+  <body id='body'>
+
+  
+    
     <!-- Messenger Chat plugin Code -->
-    <div id="fb-root"></div>
+    {% comment %} <div id="fb-root"></div>
 
     <!-- Your Chat plugin code -->
     <div id="fb-customer-chat" class="fb-customerchat"></div>
@@ -40,10 +43,29 @@
         js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
         fjs.parentNode.insertBefore(js, fjs);
       })(document, "script", "facebook-jssdk");
-    </script>
+    </script> {% endcomment %}
+    
+
+    {% comment %} Wraped whole code into below {% endcomment %}
     {% block content %}{% endblock content %}
+   {% comment %}  <script>
+      let spinner = document.getElementById('spinner')
+      let data = document.getElementById('data')
+      $.ajax({
+        type:'GET',
+        url:'/',
+        success:function(res){
+          setTimeout(()=>{
+            spinner.classList.add('no-display')
+          },500)
+        }
+        error:function(er){
+          console.log('error')
+        }
+      })
+    </script> {% endcomment %}
+    {% comment %} All static file here {% endcomment %}
     <script src="{% static 'js/home.js'%}"></script>
     <script src="{% static 'js/navtop.js'%}"></script>
-
   </body>
 </html>

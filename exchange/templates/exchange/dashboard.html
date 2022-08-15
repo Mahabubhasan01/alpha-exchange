@@ -11,7 +11,7 @@
 
 <main role="main">
   <h1 class="text-4xl flex items-center justify-center font-semibold">We served Payment</h1>
-  <section class="panel important flex justify-between">
+  <section class="panel important flex sm:flex-col justify-between">
     <div class="bg-white rounded shadow border p-6 w-64">
       <img src="https://i.ibb.co/nz2kyxZ/index.png" alt="" />
     </div>
@@ -36,6 +36,215 @@
         alt=""
       />
     </div>
+  </section>
+
+
+  <section class="panel important flex justify-between">
+    {% if orders %} 
+    <div class="container">
+      <div class="row row--top-40">
+        <div class="col-md-12">
+          <h2 class="row__title text-4xl" data-column="Progress">
+          <p class=" status--blue status">
+            Transaction history
+          </p></h2>
+        </div>
+      </div>
+      <div class="row row--top-20">
+        <div class="col-md-12">
+          <div class="table-container">
+            <table class="table">
+              <thead class="table__thead">
+                <tr>
+                  <th class="table__th">
+                    <input
+                      id="selectAll"
+                      type="checkbox"
+                      class="table__select-row"
+                    />
+                  </th>
+                  <th class="table__th">Name</th>
+                  <th class="table__th">Email</th>
+                  <th class="table__th">Send method</th>
+                  <th class="table__th">Receive method</th>
+                  <th class="table__th">Send amount</th>
+                  <th class="table__th">Receive amount</th>
+                  <th class="table__th">Send number</th>
+                  <th class="table__th">Receive number</th>
+                  <th class="table__th">Contact number</th>
+                  <th class="table__th">Status</th>
+                  <th class="table__th"></th>
+                </tr>
+              </thead>
+              <tbody class="table__tbody">
+                {% for bks in orders %}
+                <tr class="table-row table-row--chris">
+                  <td class="table-row__td">
+                    <input id="" type="checkbox" class="table__select-row" />
+                  </td>
+                  <td data-column="Policy" class="table-row__td">
+                    <div class="">
+                      <p class="table-row__policy">{{bks.name}}</p>
+                    </div>
+                  </td>
+                  <td data-column="Policy" class="table-row__td">
+                    <div class="">
+                      <p class="table-row__policy">{{bks.email}}</p>
+                    </div>
+                  </td>
+                  <td data-column="Policy status" class="table-row__td">
+                    <p class="table-row__p-status status--green status">
+                      {{bks.send_method}}
+                    </p>
+                  </td>
+                  <td data-column="Progress" class="table-row__td">
+                    <p class="table-row__progress status--blue status">
+                      {{bks.receive_method}}
+                    </p>
+                  </td>
+                  <td data-column="Status" class="table-row__td">
+                    <p class="table-row__status status--green status">
+                      {{bks.send_amount}}
+                    </p>
+                  </td>
+                  <td data-column="Progress" class="table-row__td">
+                    <p class="table-row__progress status--blue status">
+                      {{bks.receive_amount}}
+                    </p>
+                  </td>
+                  <td data-column="Policy status" class="table-row__td">
+                    <p class="table-row__p-status status--green status">
+                      {{bks.send_number}}
+                    </p>
+                  </td>
+                  <td data-column="Progress" class="table-row__td">
+                    <p class="table-row__progress status--blue status">
+                      {{bks.receive_number}}
+                    </p>
+                  </td>
+                  <td data-column="Policy Status" class="table-row__td">
+                    <p class="table-row__p-status status status--yellow">
+                      {{bks.contact_number}}
+                    </p>
+                  </td>
+                  <td data-column="Policy status" class="table-row__td">
+                    {% if bks.status is not 'paid'  %}
+                      <p class="table-row__p-status status--green status">
+                        {{bks.status}}
+                      </p>
+                    {% else %}
+                    <p class="table-row__p-status status--red status">
+                      {{bks.status}}
+                    </p>
+                    {% endif %}
+                  </td>
+                  <td data-column="Policy status" class="table-row__td">
+                   {% if bks.status is  'paid'  %}
+                   <a href="" class='text-lg text-green-500'>
+                    <button 
+                    class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                      <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+                      <span>Download</span>
+                    </button>
+                   </a>
+                   {% else %}
+                   <button class="bg-blue-500 text-red-700 font-bold py-2 px-4 rounded opacity-50 cursor-not-allowed">
+                    ...
+                  </button>
+                   {% endif %}
+                  </td>
+                  {% comment %} <td class="table-row__td">
+                    <a href="">
+                      <svg
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Delete"
+                      version="1.1"
+                      class="table-row__bin"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      x="0px"
+                      y="0px"
+                      viewBox="0 0 512 512"
+                      style="enable-background: new 0 0 512 512"
+                      xml:space="preserve"
+                    >
+                      <g>
+                        <g>
+                          <path
+                            d="M436,60h-90V45c0-24.813-20.187-45-45-45h-90c-24.813,0-45,20.187-45,45v15H76c-24.813,0-45,20.187-45,45v30    c0,8.284,6.716,15,15,15h16.183L88.57,470.945c0.003,0.043,0.007,0.086,0.011,0.129C90.703,494.406,109.97,512,133.396,512    h245.207c23.427,0,42.693-17.594,44.815-40.926c0.004-0.043,0.008-0.086,0.011-0.129L449.817,150H466c8.284,0,15-6.716,15-15v-30    C481,80.187,460.813,60,436,60z M196,45c0-8.271,6.729-15,15-15h90c8.271,0,15,6.729,15,15v15H196V45z M393.537,468.408    c-0.729,7.753-7.142,13.592-14.934,13.592H133.396c-7.792,0-14.204-5.839-14.934-13.592L92.284,150h327.432L393.537,468.408z     M451,120h-15H76H61v-15c0-8.271,6.729-15,15-15h105h150h105c8.271,0,15,6.729,15,15V120z"
+                            style="fill: rgb(158, 171, 180)"
+                          ></path>
+                        </g>
+                      </g>
+                      <g>
+                        <g>
+                          <path
+                            d="M256,180c-8.284,0-15,6.716-15,15v212c0,8.284,6.716,15,15,15s15-6.716,15-15V195C271,186.716,264.284,180,256,180z"
+                            style="fill: rgb(158, 171, 180)"
+                          ></path>
+                        </g>
+                      </g>
+                      <g>
+                        <g>
+                          <path
+                            d="M346,180c-8.284,0-15,6.716-15,15v212c0,8.284,6.716,15,15,15s15-6.716,15-15V195C361,186.716,354.284,180,346,180z"
+                            style="fill: rgb(158, 171, 180)"
+                          ></path>
+                        </g>
+                      </g>
+                      <g>
+                        <g>
+                          <path
+                            d="M166,180c-8.284,0-15,6.716-15,15v212c0,8.284,6.716,15,15,15s15-6.716,15-15V195C181,186.716,174.284,180,166,180z"
+                            style="fill: rgb(158, 171, 180)"
+                          ></path>
+                        </g>
+                      </g>
+                      <g></g>
+                      <g></g>
+                      <g></g>
+                      <g></g>
+                      <g></g>
+                      <g></g>
+                      <g></g>
+                      <g></g>
+                      <g></g>
+                      <g></g>
+                      <g></g>
+                      <g></g>
+                      <g></g>
+                      <g></g>
+                      <g></g>
+                    </svg>
+                    </a>
+                  </td> {% endcomment %}
+                </tr>
+                {% endfor %} 
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div class="container">
+        <div class="row row--top-40">
+          <div class="col-md-12 ">
+            <h2 class="row__title text-2xl" data-column="Transaction">
+            <p class=" font-medium status--red status flex justify-center items-center">
+             You have no any pending transaction history
+            </p>
+          </h2>
+        </div>
+    </div>
+
+    {% endif %}
+
+
+
+
+    
   </section>
 </main>
 
