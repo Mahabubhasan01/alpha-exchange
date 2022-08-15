@@ -1,37 +1,49 @@
-{% extends 'exchange/base.html' %}
-{% load static %}
-{% block css %}
+{% extends 'exchange/base.html' %} {% load static %} {% block css %}
 <link rel="stylesheet" href="{% static 'css/customnavbar.css' %}" />
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <div class="page-wrapper">
   <section class="hero">
-    <div class="content ">
-      <h2>Hero Header</h2>
-      <p>
-        Aliquam erat ac ipsum. Integer aliquam purus. Quisque lorem tortor fringilla sed, vestibulum id, eleifend justo vel bibendum sapien massa ac turpis faucibus orci luctus non</p>
-      </div> 
+    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa sunt est ad fugiat velit facere amet odio natus similique tenetur beatae voluptatum et dolores, asperiores quo aspernatur vero quam reiciendis deserunt nesciunt? Omnis sunt excepturi accusantium esse suscipit maxime sapiente aut magnam ex nesciunt!</h1>
+    {% comment %} <div class="content">
+      
+    </div> {% endcomment %}
+
     <div class="waves"></div>
   </section>
-   <section class="features">
-     <div class="feature-container">
-       <img src="https://cdn-images-1.medium.com/max/2000/1*HFAEJvVOq4AwFuBivNu_OQ.png" alt="Flexbox Feature">
-       <h2>Flexbox Featured</h2>
-       <p>This pen contains use of flexbox for the headline and feature section! We use it in our mobile navbar and show the power of mixing css grid and flexbox.</p>
-     </div>
-     <div class="feature-container">
-       <img src="https://blog.webix.com/wp-content/uploads/2017/06/20170621-CSS-Grid-Layout-710x355-tiny.png" alt="Flexbox Feature">
-       <h2>CSS Grid Navigation</h2>
-       <p>While flexbox is used for the the mobile navbar, CSS grid is used for the desktop navbar showing many ways we can use both.</p>
-     </div>
-     <div class="feature-container">
-       <img src="https://www.graycelltech.com/wp-content/uploads/2015/06/GCT-HTML5.jpg" alt="Flexbox Feature">
-       <h2>Basic HTML5</h2>
-       <p>This pen contains basic html to setup the page to display the responsive navbar.</p>
-     </div>
-   </section>
- </div>
- <script src="{% static 'js/customnavbar.js'%}"></script>
+  <section class="features">
+    <div class="feature-container">
+      <img
+        src="https://i.ibb.co/nstps1s/download-1.png
+       "
+      />
+      <h2>Flexbox Featured</h2>
+      <p>
+        This pen contains use of flexbox for the headline and feature section!
+        We use it in our mobile navbar and show the power of mixing css grid and
+        flexbox.
+      </p>
+    </div>
+    <div class="feature-container">
+      <img src="https://i.ibb.co/2FLvQLj/download.png" alt="Flexbox Feature" />
+      <h2>CSS Grid Navigation</h2>
+      <p>
+        While flexbox is used for the the mobile navbar, CSS grid is used for
+        the desktop navbar showing many ways we can use both.
+      </p>
+    </div>
+    <div class="feature-container">
+      <img
+        src="https://www.graycelltech.com/wp-content/uploads/2015/06/GCT-HTML5.jpg"
+        alt="Flexbox Feature"
+      />
+      <h2>Basic HTML5</h2>
+      <p>
+        This pen contains basic html to setup the page to display the responsive
+        navbar.
+      </p>
+    </div>
+  </section>
+</div>
+<script src="{% static 'js/customnavbar.js'%}"></script>
 
 {% endblock %}

@@ -1,18 +1,14 @@
-import email
 from django.shortcuts import render
-
-import exchange
+from django.contrib.auth.decorators import login_required
 from .forms import Register_User, Login_Form
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
-from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import PasswordChangeForm
 from api.models import Order, Blog, Review
 from .forms import Order_Form, Blog_Form, Review_Form
 from django.conf import settings
 from sslcommerz_lib import SSLCOMMERZ
-from django.urls import reverse
 
 # User login form into home page
 
@@ -33,6 +29,7 @@ def Home(request):
     return render(request, 'exchange/home.html', {'form': fm, 'blogs': blogs, "reviews": reviews})
 
 
+@login_required(login_url='home')
 def All_Blogs(request):
     blogs = Blog.objects.all()
     reviews = Review.objects.all()
@@ -40,6 +37,7 @@ def All_Blogs(request):
     return render(request, 'exchange/allblogs.html', {'blogs': blogs, 'reviews': reviews})
 
 
+@login_required(login_url='home')
 def Blog_Detail(request, blog_id):
     blog = Blog.objects.get(id=blog_id)
     return render(request, 'exchange/blogdetail.html', {'blog': blog})
@@ -59,7 +57,7 @@ def Register_Form(request):
 
 
 # User dashboard
-
+@login_required(login_url='home')
 def Dashboard(request):
     email = request.user.email
     orders = Order.objects.filter(email=email, status='pending')

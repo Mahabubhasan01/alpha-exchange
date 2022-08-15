@@ -9,7 +9,7 @@
 
 
 /* BASIC SETUP */
-
+/* 
 .page-wrapper {
   width: 100%;
   height: auto;
@@ -17,11 +17,11 @@
 
 .nav-wrapper {
   width: 100%;
-  position: -webkit-sticky; /* Safari */
+  position: -webkit-sticky; 
   position: sticky;
   top: 0;
   background-color: #fff;
-}
+} */
 
 .grad-bar {
   width: 100%;
@@ -37,7 +37,7 @@
 :root {
   --color: #4973ff;
 }
-
+/* 
 body {
   font-size: 16px;
   font-family: "Montserrat", sans-sherif;
@@ -76,7 +76,7 @@ body {
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.5);
   line-height: 1.4;
-}
+} */
 
 /* ========================= */
 
