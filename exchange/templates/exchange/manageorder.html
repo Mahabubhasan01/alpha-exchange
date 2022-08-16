@@ -391,6 +391,7 @@
                   <th class="table__th">Receive amount</th>
                   <th class="table__th">Send number</th>
                   <th class="table__th">Receive number</th>
+                  <th class="table__th">Status</th>
                   <th class="table__th">Actions</th>
                   <th class="table__th"></th>
                 </tr>
@@ -436,6 +437,11 @@
                   <td data-column="Receive Number" class="table-row__td">
                     <p class="table-row__progress status--blue status">
                       {{bks.receive_number}}
+                    </p>
+                  </td>
+                  <td data-column="Receive Number" class="table-row__td">
+                    <p class="table-row__progress status--blue status">
+                      {{bks.status}}
                     </p>
                   </td>
                   <td data-column="Policy Status" class="table-row__td">

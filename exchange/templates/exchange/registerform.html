@@ -1,14 +1,16 @@
 {% extends 'exchange/base.html' %}{% load tailwind_tags %} {% load static %} {%
 tailwind_css %} {% load static %}{% block css %}
 <link rel="stylesheet" href="{% static 'css/registerform.css' %}" />
-{% endblock css %} 
-{% block title %}Register form{% endblock title %}
+{% endblock css %} {% block title %}Register form{% endblock title %} 
 {% block content %}
 
 <main class="main">
-  <h1>Register account</h1>
   <div class="container">
     <section class="wrapper">
+      <div class="flex justify-between">
+        <p></p>
+        <a href="{% url 'home' %}"><p class="text-xl text-red-400">Back</p></a>
+      </div>
       <form class="form" method="POST">
         {% csrf_token %}
         <div class="form-group">

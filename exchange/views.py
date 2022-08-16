@@ -29,7 +29,6 @@ def Home(request):
     return render(request, 'exchange/home.html', {'form': fm, 'blogs': blogs, "reviews": reviews})
 
 
-@login_required(login_url='home')
 def All_Blogs(request):
     blogs = Blog.objects.all()
     reviews = Review.objects.all()
@@ -37,7 +36,6 @@ def All_Blogs(request):
     return render(request, 'exchange/allblogs.html', {'blogs': blogs, 'reviews': reviews})
 
 
-@login_required(login_url='home')
 def Blog_Detail(request, blog_id):
     blog = Blog.objects.get(id=blog_id)
     return render(request, 'exchange/blogdetail.html', {'blog': blog})
@@ -57,7 +55,6 @@ def Register_Form(request):
 
 
 # User dashboard
-@login_required(login_url='home')
 def Dashboard(request):
     email = request.user.email
     orders = Order.objects.filter(email=email, status='pending')
