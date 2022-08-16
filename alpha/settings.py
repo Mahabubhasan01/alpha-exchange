@@ -62,14 +62,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'alpha.wsgi.application'
 
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -121,5 +119,17 @@ INTERNAL_IPS = [
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 STORE_ID = 'asdfaer2343r'
 STORE_PASS = 'asdfasferw'
+#### settings.py
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = 'dcfc93d9835f36'
+EMAIL_HOST_PASSWORD = '5dbbcce329b0b8'
+EMAIL_PORT = '2525'
+
+""" EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'Alpha.exchange.bd@gmail.com'
+EMAIL_HOST_PASSWORD = 'Alpha67890'
+EMAIL_PORT = 587 """

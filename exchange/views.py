@@ -7,9 +7,9 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import PasswordChangeForm
 from api.models import Order, Blog, Review
 from .forms import Order_Form, Blog_Form, Review_Form
-from django.conf import settings
 from sslcommerz_lib import SSLCOMMERZ
-
+from django.core.mail import send_mail
+from django.conf import settings
 # User login form into home page
 
 
@@ -40,6 +40,8 @@ def Blog_Detail(request, blog_id):
     blog = Blog.objects.get(id=blog_id)
     return render(request, 'exchange/blogdetail.html', {'blog': blog})
 # User register form
+# Alpha67890
+# Alpha.exchange.bd
 
 
 def Register_Form(request):
@@ -56,6 +58,7 @@ def Register_Form(request):
 
 # User dashboard
 def Dashboard(request):
+
     email = request.user.email
     orders = Order.objects.filter(email=email, status='pending')
 
@@ -94,8 +97,11 @@ def Add_blogs(request):
 
 def User_Profile(request):
     user = request.user
-
-    return render(request, 'exchange/userprofile.html', {'user': user})
+    email = request.user.email
+    total = Order.objects.filter(email=email).count()
+    paid = Order.objects.filter(email=email, status='paid').count()
+    review = Review.objects.filter(email=email).count()
+    return render(request, 'exchange/userprofile.html', {'user': user, 'total': total, 'paid': paid, 'review': review})
 
 
 # Manage all user data
@@ -162,49 +168,42 @@ def change_password(request):
 
 
 def Exchange_Money(request):
-    def amount():
-        orders = Order.objects.filter(email=email)
-        for am in orders:
-            return am.receive_amount
-
-    def number():
-        orders = Order.objects.filter(email=email)
-        for am in orders:
-            return am.contact_number
-    email = request.user.email
-    orders = Order.objects.filter(email=email)
-    name = request.user.first_name, request.user.last_name,
-    print(amount(), number())
-    # ssl coomerze
-    settings = {'store_id': 'testbox',
-                'store_pass': 'qwerty', 'issandbox': True}
-    sslcommez = SSLCOMMERZ(settings)
-    post_body = {}
-    post_body['total_amount'] = amount()
-    post_body['currency'] = "BDT"
-    post_body['tran_id'] = "12345"
-    post_body['success_url'] = "transaction_history"
-    post_body['fail_url'] = "your fail url"
-    post_body['cancel_url'] = "your cancel url"
-    post_body['emi_option'] = 0
-    post_body['cus_name'] = name
-    post_body['cus_email'] = email
-    post_body['cus_phone'] = number()
-    post_body['cus_add1'] = orders
-    post_body['cus_city'] = "Dhaka"
-    post_body['cus_country'] = "Bangladesh"
-    post_body['shipping_method'] = "NO"
-    post_body['multi_card_name'] = ""
-    post_body['num_of_item'] = 1
-    post_body['product_name'] = "Test"
-    post_body['product_category'] = "Test Category"
-    post_body['product_profile'] = "general"
-
-    response = sslcommez.createSession(post_body)
-    # print(response)
     if request.method == 'POST':
         form = Order_Form(request.POST)
         if form.is_valid():
+            recipient = form.cleaned_data.get('email')
+            amount = form.cleaned_data.get('send_amount')
+            number = form.cleaned_data.get('receive_number')
+            email = request.user.email
+            orders = Order.objects.filter(email=email)
+            name = request.user.first_name, request.user.last_name,
+            # ssl coomerze
+            settings = {'store_id': 'testbox',
+                        'store_pass': 'qwerty', 'issandbox': True}
+            sslcommez = SSLCOMMERZ(settings)
+            post_body = {}
+            post_body['total_amount'] = amount
+            post_body['currency'] = "BDT"
+            post_body['tran_id'] = "12345"
+            post_body['success_url'] = "http://127.0.0.1:8000/transaction_history/"
+            post_body['fail_url'] = "your fail url"
+            post_body['cancel_url'] = "your cancel url"
+            post_body['emi_option'] = 0
+            post_body['cus_name'] = name
+            post_body['cus_email'] = email
+            post_body['cus_phone'] = number
+            post_body['cus_add1'] = orders
+            post_body['cus_city'] = "Dhaka"
+            post_body['cus_country'] = "Bangladesh"
+            post_body['shipping_method'] = "NO"
+            post_body['multi_card_name'] = ""
+            post_body['num_of_item'] = 1
+            post_body['product_name'] = "Test"
+            post_body['product_category'] = "Test Category"
+            post_body['product_profile'] = "general"
+            response = sslcommez.createSession(post_body)
+            send_mail('Alpha exchange payment', 'Successfully payment done',
+                      'noreplayok@alpha.exchange.com', [email])
             form.save()
             return HttpResponseRedirect((response['GatewayPageURL']))
     else:
