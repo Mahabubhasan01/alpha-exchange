@@ -79,8 +79,8 @@ def Add_blogs(request):
     blogs = Blog.objects.all()
     email = request.user.email
     reviews = Review.objects.filter(email=email)
-    rform = Review_Form()
-    bform = Blog_Form()
+    rrform = Review_Form()
+    bbform = Blog_Form()
     if request.method == 'POST':
         bform = Blog_Form(request.data)
         if bform.is_valid():
@@ -90,7 +90,7 @@ def Add_blogs(request):
         if rform.is_valid():
             print(rform)
             rform.save()
-    return render(request, 'exchange/addblogs.html', {'blogs': blogs, 'bform': bform, 'reviews': reviews, 'rform': rform})
+    return render(request, 'exchange/addblogs.html', {'blogs': blogs, 'bform': bbform, 'reviews': reviews, 'rform': rrform})
 
 # Every user profile
 
