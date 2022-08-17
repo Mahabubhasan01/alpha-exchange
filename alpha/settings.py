@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = False
 
-ALLOWED_HOSTS = ['pure-beyond-06062.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['pure-beyond-06062.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -31,6 +31,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -122,7 +124,7 @@ NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 STORE_ID = 'asdfaer2343r'
 STORE_PASS = 'asdfasferw'
-#### settings.py
+# settings.py
 EMAIL_HOST = 'smtp.mailtrap.io'
 EMAIL_HOST_USER = 'dcfc93d9835f36'
 EMAIL_HOST_PASSWORD = '5dbbcce329b0b8'
