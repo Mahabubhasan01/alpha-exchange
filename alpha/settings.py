@@ -6,7 +6,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['pure-beyond-06062.herokuapp.com', '127.0.0.1']
 
@@ -109,7 +109,7 @@ STATIC_URL = 'static/'
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 STATIC_DIRS = [os.path.join(BASE_DIR/'static')]
-STATICFILES_STORAGE =  'django.contrib.staticfiles.storage.StaticFilesStorage' 
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
