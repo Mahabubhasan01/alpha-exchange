@@ -50,7 +50,7 @@ def Register_Form(request):
         if form.is_valid():
             form.save()
             print(form)
-            return HttpResponseRedirect('home')
+            return HttpResponseRedirect('/')
     else:
         form = Register_User()
     return render(request, 'exchange/registerform.html', {'form': form})

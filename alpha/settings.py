@@ -104,14 +104,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR/'static')
+STATIC_ROOT = os.path.join(BASE_DIR/'static/')
 STATIC_URL = 'static/'
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 STATIC_DIRS = [os.path.join(BASE_DIR/'static')]
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 TAILWIND_APP_NAME = 'theme'
@@ -130,8 +128,3 @@ EMAIL_HOST_USER = 'dcfc93d9835f36'
 EMAIL_HOST_PASSWORD = '5dbbcce329b0b8'
 EMAIL_PORT = '2525'
 
-""" EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'Alpha.exchange.bd@gmail.com'
-EMAIL_HOST_PASSWORD = 'Alpha67890'
-EMAIL_PORT = 587 """
